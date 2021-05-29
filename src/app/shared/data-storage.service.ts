@@ -2,7 +2,8 @@ import { Injectable } from "@angular/core";
 import { HttpClient ,HttpResponse } from "@angular/common/http";
 import { RecipeService } from "../recipes/recipe.service";
 import { Recipe } from "../recipes/recipe.model";
-import 'rxjs/Rx'
+
+import { map } from 'rxjs/operators';
 import { AuthService } from "../auth/auth.service";
 
 @Injectable()
@@ -20,7 +21,7 @@ addRecipes(){
 getRecipes(){
     const token = this.authService.getToken();
     this.http.get('https://ng-recipe-book-ba334-default-rtdb.firebaseio.com/recipes.json?auth=' +token)
-    .map(
+    .pipe(map(
         (response:HttpResponse<Recipe[]>)=>
         {
             const recipes:any = response
@@ -31,7 +32,7 @@ getRecipes(){
            }
            return recipes;
         }
-    )
+    ))
     .subscribe(
         (recipe:Recipe[])=>{
             this.recipeService.retrieveRecipes(recipe);

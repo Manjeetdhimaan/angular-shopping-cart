@@ -1,0 +1,11 @@
+.btn{
+    margin: 2px 2px;
+}
+.btn , .btn:active{
+    outline: none;
+} 
+
+input.ng-invalid.ng-touched ,
+ textarea.ng-invalid.ng-touched{
+     border: 1px solid red;
+}

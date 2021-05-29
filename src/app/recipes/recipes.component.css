@@ -1,0 +1,6 @@
+.btn{
+    margin: 2px 2px;
+}
+.btn , .btn:active{
+    outline: none;
+} 
